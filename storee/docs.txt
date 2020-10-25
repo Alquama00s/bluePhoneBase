@@ -1,0 +1,51 @@
+general documentation
+keyWords--
+    c-collections
+    d-documents
+    #-means not the literal name
+database--
+    FireStore is used as database
+    all the phone data is stored in the following hierarchy
+    phone(c)<-phone(d)<-brand(c)<-brand(d)
+    <-#brandname(c)<-#brandname(d)<-#seriesname(c)<-#phonename(d)
+    #brandname(d) has data type 1
+    brand(d) has data type 0
+    phonename(d) has data type 3
+    datatype--
+        these are different structure of data in firestore(d)
+        type 0-
+            contains a list(array) of options available
+            contains a map<string,string> of options:address(d)
+        type 1
+            contains a list(array) of options available
+            contains a map<string,string> of options:"tomap"
+            contains additional map of type 0 for every available options
+        type 3
+            contains the phone data
+default question--
+    const List<String> quest=[
+    'General Problems',
+    'How is your screen condition',
+    'Do you have the following'
+    'Mobile age',
+    'Is your phone under warranty',
+    'Other problems'
+    ];
+    const List<List<dynamic>> option=[
+    ['C','Front camera','Back camera','Volume button','Finger Touch sensor','WiFi','Battery','speaker','facesensor'],
+    ['C','Touch not Working','Spots present','Display Lines present','Broken'],
+    ['C','Charger','Box','Bill'],
+    ['R','Less than a year','More than a year'],
+    ['R','Yes','No'],
+    ['C','Sim not working','Scratch present','Dent present']
+    ];
+last work--
+    authentication
+ToDo--
+    Load image from database
+    add variation (32gb ram..) selector
+    Evaluate->class->price calculator(3 tasks)
+    appoint function appoints a schedule for meet up
+    authentication
+    filling the data base
+    designing a app for the delivery guy

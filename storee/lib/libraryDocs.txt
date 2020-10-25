@@ -1,0 +1,6 @@
+commons.dart--
+    it contains functions common to all other libraries
+globeVar.dart--
+    all the global variables are defined here
+widgetlib.dart
+    it contains widget definations

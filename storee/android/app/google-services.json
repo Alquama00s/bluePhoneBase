@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "479611302892",
+    "firebase_url": "https://blue-phone-base.firebaseio.com",
+    "project_id": "blue-phone-base",
+    "storage_bucket": "blue-phone-base.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479611302892:android:4c2ab67882ad5d4f7a46c9",
+        "android_client_info": {
+          "package_name": "com.bluephonebase.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfbbjD7v0zvaNzfnf4B0kENXxaN1ARsyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
