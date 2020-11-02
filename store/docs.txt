@@ -42,10 +42,5 @@ default question--
 last work--
     authentication
 ToDo--
-    Load image from database
-    add variation (32gb ram..) selector
-    Evaluate->class->price calculator(3 tasks)
-    appoint function appoints a schedule for meet up
-    authentication
     filling the data base
     designing a app for the delivery guy
