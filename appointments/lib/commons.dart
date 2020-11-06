@@ -174,10 +174,31 @@ Future<void> addSeries(String info,String filepath,String phone,String phonepath
   await uploadFile(filepath,info);
   await uploadFile(phonepath,phone);
 }
+///resend price
+Future<void> reSend(double price ,String root,String hashid)async{
+  await FirebaseFirestore.instance.doc(root).update({
+    'appointments.$hashid.accepted':false,
+    'appointments.$hashid.ourprice':price,
+  });
+  await FirebaseFirestore.instance.doc('appointments/global').update({
+    'appointments.$hashid.accepted':false,
+    'appointments.$hashid.ourprice':price,
+  });
+}
+///update pickup
+Future<void> pickup(Map<String,dynamic> deliv,String root,String hashid)async{
+  await FirebaseFirestore.instance.doc(root).update({
+    'appointments.$hashid.delivery':deliv,
+  });
+  await FirebaseFirestore.instance.doc('appointments/global').update({
+    'appointments.$hashid.delivery':deliv,
+  });
+}
 ///converting appointment map to array
 List<Map<String,dynamic>> ConvAppointments(List<dynamic> ids,Map<String,dynamic> appointmentsMap){
   List<Map<String,dynamic>> appointments=[];
   for(String i in ids){
+    appointmentsMap[i]['hashid']=i;
     appointments.add(appointmentsMap[i]);
   }
   return appointments;

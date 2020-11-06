@@ -1,8 +1,9 @@
+import 'package:appointments/evaluate.dart';
 import 'package:flutter/material.dart';
 import 'launch.dart';
 import 'commons.dart';
 import 'globvar.dart';
-
+import 'pickup.dart';
 class Options extends StatelessWidget {
   final Map<String, dynamic> view;
   Options(this.view);
@@ -184,8 +185,20 @@ class ViewAppoint extends StatelessWidget {
               child: Text('Generate Phone data'),
             ),
             RaisedButton(
-              onPressed: () => {},
+              onPressed: () => {
+                Navigator.push(context,
+                MaterialPageRoute(builder: (context)=>Entry(view)),
+                ),
+              },
               child: Text('Send Recalculated Price'),
+            ),
+            RaisedButton(
+              onPressed: () => {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>Pickup('appointments/${view['profile']['uid']}',view['hashid'])),
+                ),
+              },
+              child: Text('Set pickup details'),
             ),
             RaisedButton(
               onPressed: () => {},
