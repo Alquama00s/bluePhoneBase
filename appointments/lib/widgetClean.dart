@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:store/globeVar.dart';
-
+import 'globvar.dart';
 class Field extends StatelessWidget {
   final String hint,label;
   final bool active;
   final TextInputType type;
-  Field(this.type,this.hint,this.label,this.active);
+  final function;
+  Field(this.type,this.hint,this.label,this.function,this.active);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,11 +40,11 @@ class Field extends StatelessWidget {
             child: TextFormField(
               keyboardType: type,
               onChanged: (value)=>{
-                tempuser[hint]=value,
+                function(value),
               },
               style: TextStyle(fontSize: 20),
               decoration: InputDecoration(
-                hintText: Luser[hint],
+                hintText: hint,
                 border: InputBorder.none,
                 //labelText: hint[0].toUpperCase()+hint.substring(1),
               ),
@@ -61,7 +61,7 @@ class Field extends StatelessWidget {
             constraints: BoxConstraints(minWidth: double.infinity),
             padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: Text(
-              Luser[hint],
+              hint,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.grey[500],
@@ -73,3 +73,4 @@ class Field extends StatelessWidget {
     );
   }
 }
+///

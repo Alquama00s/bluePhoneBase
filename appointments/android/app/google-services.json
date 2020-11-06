@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "479611302892",
+    "firebase_url": "https://blue-phone-base.firebaseio.com",
+    "project_id": "blue-phone-base",
+    "storage_bucket": "blue-phone-base.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479611302892:android:fd9df44529db2e327a46c9",
+        "android_client_info": {
+          "package_name": "com.bluephonebase.appointments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfbbjD7v0zvaNzfnf4B0kENXxaN1ARsyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479611302892:android:bad12f7bff47c4b67a46c9",
+        "android_client_info": {
+          "package_name": "com.bluephonebase.blueback"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479611302892-dlrhkvmm1nl2jdlfh9j0dl26a3m5c3rl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bluephonebase.blueback",
+            "certificate_hash": "8b676871090b1868e239bd2ffb091ca037d160b1"
+          }
+        },
+        {
+          "client_id": "479611302892-mt506v7vghjtdrua3mjbm32s541tim0v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bluephonebase.blueback",
+            "certificate_hash": "f8d1f6d31319493b7e6a7d0e33f64148eb9d255c"
+          }
+        },
+        {
+          "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfbbjD7v0zvaNzfnf4B0kENXxaN1ARsyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479611302892:android:4c2ab67882ad5d4f7a46c9",
+        "android_client_info": {
+          "package_name": "com.bluephonebase.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479611302892-84bvblo7jr3jbatve5nai21brktldild.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bluephonebase.store",
+            "certificate_hash": "8b676871090b1868e239bd2ffb091ca037d160b1"
+          }
+        },
+        {
+          "client_id": "479611302892-dl347i4ttr49tt4b9cgpqkp20pl3vdse.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bluephonebase.store",
+            "certificate_hash": "f8d1f6d31319493b7e6a7d0e33f64148eb9d255c"
+          }
+        },
+        {
+          "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfbbjD7v0zvaNzfnf4B0kENXxaN1ARsyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479611302892-cub97rqu12ir8lf9vgpa0up601lhuggl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

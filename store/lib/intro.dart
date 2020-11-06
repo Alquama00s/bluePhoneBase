@@ -4,6 +4,7 @@ import 'commons.dart';
 import 'globeVar.dart';
 import 'widgetlib.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'browser.dart';
 class Intro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

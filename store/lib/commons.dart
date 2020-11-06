@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'package:uuid/uuid.dart';
 Future<Map<String,dynamic>> getFire(String address) async {///get the document from firestore
   Map<String,dynamic> data;
   try{
@@ -106,6 +107,7 @@ void initLuser()async{
   if(Luser==null){
   Luser={'name':Guser.displayName,
   'email':Guser.email,
+    'uid':Guser.uid,
   'phone':'Phone',
   'addressl1':'Address Line 1',
   'addressl2':'Address Line 2',
@@ -143,12 +145,30 @@ Future<bool> userExist(String user)async{
     }
 }
 ///update appointments
-void update(String uid){
+Future<void> update(String uid)async{
+  String id=Uuid().v4();
   FirebaseFirestore.instance.collection('appointments').doc(uid).update({
-    'appointments':FieldValue.arrayUnion([phonestate]),
+    'appointmentid':FieldValue.arrayUnion([id]),
+    'appointments.$id.phonestate':phonestate,
+    'appointments.$id.ourprice':-1.0,
+    'appointments.$id.delivery':{},
+    'appointments.$id.accepted':true,
   })
       .catchError((error) {
   print("Error removing document: $error");
+
+  });
+  await getLuser();
+  FirebaseFirestore.instance.collection('appointments').doc('global').update({
+    'appointmentid':FieldValue.arrayUnion([id]),
+    'appointments.$id.phonestate':phonestate,
+    'appointments.$id.profile':Luser,
+    'appointments.$id.ourprice':-1.0,
+    'appointments.$id.delivery':{},
+    'appointments.$id.accepted':true,
+  })
+      .catchError((error) {
+    print("Error removing document: $error");
 
   });
 
@@ -157,7 +177,8 @@ void update(String uid){
 void initAppoint(String uid){
   FirebaseFirestore.instance.collection('appointments').doc(uid).set({
     'profile':Luser,
-    'appointments':[],
+    'appointmentid':[],
+    'appointments':{},
   })
       .catchError((error) => print("Failed to add user: $error"));
 }
@@ -176,6 +197,14 @@ void initializep(){
     'price':0,
     'datetime':'0',
   };
+}
+///converting appointment map to array
+List<Map<String,dynamic>> ConvAppointments(List<dynamic> ids,Map<String,dynamic> appointmentsMap){
+List<Map<String,dynamic>> appointments=[];
+for(String i in ids){
+  appointments.add(appointmentsMap[i]['phonestate']);
+}
+return appointments;
 }
 ///licenses
 void License(context){
