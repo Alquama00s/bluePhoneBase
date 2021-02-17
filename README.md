@@ -1,5 +1,5 @@
 # Blue Phone Base
-This is online phone reselling system backed by firebase.
+This is an online phone reselling system backed by firebase.
 <br>
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)<br/>
 
