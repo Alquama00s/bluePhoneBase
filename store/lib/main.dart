@@ -12,12 +12,16 @@ void main() {
 }
 class Main extends StatelessWidget {
   // This widget is the root of application.
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  Future<dynamic> _initialization()async{
+   await Firebase.initializeApp();
+   await getLuser();
+   return;
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: FutureBuilder(
-        future: _initialization,
+        future: _initialization(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Error('Something Went wrong');

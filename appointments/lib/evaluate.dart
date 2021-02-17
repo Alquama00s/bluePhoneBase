@@ -170,7 +170,7 @@ class _EvaluateState extends State<Evaluate> {
       price=rate;
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Price(rate,'appointments/${widget.view['profile']['uid']}',widget.view['hashid'])),
+        MaterialPageRoute(builder: (context) => Price(rate,'appointments/${widget.view['profile']['uid']}',widget.view['hashid'],widget.view['phonestate']['price'])),
       );
     }
   }
@@ -259,9 +259,9 @@ class Entry extends StatelessWidget{
 }
 ///price screen
 class Price extends StatelessWidget {
-  final double rate;
+  final double rate,prevprice;
   final String root,hashid;
-  Price(this.rate,this.root,this.hashid);
+  Price(this.rate,this.root,this.hashid,this.prevprice);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,9 +272,9 @@ class Price extends StatelessWidget {
           children: [
             Container(
               child: Text(
-                'Congrats you get',
+                'Previous Price : ${prevprice}',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 20,
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
                 ),
@@ -283,19 +283,11 @@ class Price extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Icon(
-              Icons.monetization_on,
-              color: Colors.green[600],
-              size: 100,
-            ),
-            SizedBox(
-              height: 50,
-            ),
             Container(
               child: Text(
-                'Rupee $rate',
+                'Current price : $rate',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 20,
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
                 ),

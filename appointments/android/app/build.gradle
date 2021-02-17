@@ -1,3 +1,4 @@
+import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -25,6 +26,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+def keystorepropfile=rootProject.file('key.properties')
+def keystoreprop=new Properties()
+keystoreprop.load(new FileInputStream(keystorepropfile))
 
 android {
     compileSdkVersion 29
@@ -45,12 +49,19 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    signingConfigs{
+        release{
+            keyAlias keystoreprop['keyAlias']
+            keyPassword keystoreprop['keyPassword']
+            storeFile file(keystoreprop['storeFile'])
+            storePassword keystoreprop['storePassword']
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -194,6 +194,18 @@ Future<void> pickup(Map<String,dynamic> deliv,String root,String hashid)async{
     'appointments.$hashid.delivery':deliv,
   });
 }
+///delete appointment
+Future<String> markFinish(String root,String hashid)async{
+  Map<String,dynamic> doc=await getFire(root);
+  if(doc['appointments'][hashid]==null) {
+    await FirebaseFirestore.instance.doc('appointments/global').update({
+      'appointmentid': FieldValue.arrayRemove([hashid]),
+      'appointments.$hashid': FieldValue.delete(),
+    });
+    return 'Deleted successfully';
+  }
+  return 'First ask user to delete';
+}
 ///converting appointment map to array
 List<Map<String,dynamic>> ConvAppointments(List<dynamic> ids,Map<String,dynamic> appointmentsMap){
   List<Map<String,dynamic>> appointments=[];

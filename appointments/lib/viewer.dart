@@ -35,10 +35,6 @@ class Options extends StatelessWidget {
               height: 40,
               width: MediaQuery.of(context).size.width - 29,
               decoration: BoxDecoration(
-                border: Border.all(
-                  width: 0,
-                  color: Colors.red.withOpacity(1),
-                ),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 color: Colors.white,
               ),
@@ -64,10 +60,6 @@ class Options extends StatelessWidget {
                   height: 80,
                   width: MediaQuery.of(context).size.width / 2 - 20,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 0,
-                      color: Colors.red.withOpacity(1),
-                    ),
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -111,7 +103,47 @@ class Options extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            SizedBox(height: 10,),
+            view['ourprice']==-1?
+            Container():
+            view['accepted']?
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(5),
+              height: 40,
+              width: MediaQuery.of(context).size.width - 29,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Colors.white,
+              ),
+              child: Text(
+                'Accepted : ${view['ourprice']}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 20,
+                ),
+              ),
+            ):
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(5),
+              height: 40,
+              width: MediaQuery.of(context).size.width - 29,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Colors.white,
+              ),
+              child: Text(
+                'Not accepted our price:${view['ourprice']}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -125,86 +157,101 @@ class ViewAppoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Customer\'s profile\n',
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue[900],
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text(
-                'Name : ${view['profile']['name']}\n'
-                    'Address : ${view['profile']['addressl1']} '
-                    '${view['profile']['addressl2']}\n'
-                    'Landmark : ${view['profile']['landmark']}\n'
-                    'City : ${view['profile']['city']}\n'
-                    'State : ${view['profile']['state']}\n'
-                    'Pincode : ${view['profile']['pincode']}\n',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue[800],
+      body: Builder(
+        builder: (context)=>Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child:Text(
-                view['phonestate']['datetime'] == 'ASAP'
-                    ? 'Appointment Date : ${view['phonestate']['datetime']}'
-                    : 'Appointment Date : ${DateTime.parse(view['phonestate']['datetime']).day} '
-                    '${month[DateTime.parse(view['phonestate']['datetime']).month]} '
-                    '${DateTime.parse(view['phonestate']['datetime']).year} '
-                    '${day[DateTime.parse(view['phonestate']['datetime']).weekday]}',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue[800],
+                Text(
+                  'Customer\'s profile\n',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[900],
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 90,
-            ),
-            RaisedButton(
-              onPressed: () => {},
-              child: Text('Generate Phone data'),
-            ),
-            RaisedButton(
-              onPressed: () => {
-                Navigator.push(context,
-                MaterialPageRoute(builder: (context)=>Entry(view)),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Text(
+                    'Name : ${view['profile']['name']}\n'
+                        'Address : ${view['profile']['addressl1']} '
+                        '${view['profile']['addressl2']}\n'
+                        'Landmark : ${view['profile']['landmark']}\n'
+                        'City : ${view['profile']['city']}\n'
+                        'State : ${view['profile']['state']}\n'
+                        'Pincode : ${view['profile']['pincode']}\n'
+                        'Pickup : \n  -Name : ${view['delivery']['name']}'
+                        '\n  -Number : ${view['delivery']['number']}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue[800],
+                    ),
+                  ),
                 ),
-              },
-              child: Text('Send Recalculated Price'),
-            ),
-            RaisedButton(
-              onPressed: () => {
-                Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>Pickup('appointments/${view['profile']['uid']}',view['hashid'])),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child:Text(
+                    view['phonestate']['datetime'] == 'ASAP'
+                        ? 'Appointment Date : ${view['phonestate']['datetime']}'
+                        : 'Appointment Date : ${DateTime.parse(view['phonestate']['datetime']).day} '
+                        '${month[DateTime.parse(view['phonestate']['datetime']).month]} '
+                        '${DateTime.parse(view['phonestate']['datetime']).year} '
+                        '${day[DateTime.parse(view['phonestate']['datetime']).weekday]}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue[800],
+                    ),
+                  ),
                 ),
-              },
-              child: Text('Set pickup details'),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                  onPressed: () => {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text("In development\n${view['phonestate']['pstate']}"),
+                      duration: Duration(seconds: 5),
+                    )),
+                  },
+                  child: Text('Generate Phone data'),
+                ),
+                RaisedButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Entry(view)),
+                    ),
+                  },
+                  child: Text('Send Recalculated Price'),
+                ),
+                RaisedButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Pickup('appointments/${view['profile']['uid']}',view['hashid'])),
+                    ),
+                  },
+                  child: Text('Set pickup details'),
+                ),
+                RaisedButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Send(markFinish('appointments/${view['profile']['uid']}',view['hashid']),Loader())),
+                    ),
+                  },
+                  child: Text('Mark Finished'),
+                ),
+              ],
             ),
-            RaisedButton(
-              onPressed: () => {},
-              child: Text('Mark Finished'),
-            ),
-          ],
+          ),
         ),
       ),
     );

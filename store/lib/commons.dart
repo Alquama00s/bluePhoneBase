@@ -198,13 +198,43 @@ void initializep(){
     'datetime':'0',
   };
 }
+///delete appointment
+Future<String> markFinish(String uid,String hashid)async{
+    await FirebaseFirestore.instance.doc('appointments/${uid}').update({
+      'appointmentid': FieldValue.arrayRemove([hashid]),
+      'appointments.$hashid': FieldValue.delete(),
+    });
+    return 'Deleted successfully';
+}
 ///converting appointment map to array
 List<Map<String,dynamic>> ConvAppointments(List<dynamic> ids,Map<String,dynamic> appointmentsMap){
-List<Map<String,dynamic>> appointments=[];
-for(String i in ids){
-  appointments.add(appointmentsMap[i]['phonestate']);
+  List<Map<String,dynamic>> appointments=[];
+  for(String i in ids){
+    appointmentsMap[i]['hashid']=i;
+    appointments.add(appointmentsMap[i]);
+  }
+  return appointments;
 }
-return appointments;
+///accept price
+Future<String> acceptPrice(String uid,String hashid)async{
+  await FirebaseFirestore.instance.doc('appointments/${uid}').update({
+    'appointments.$hashid.accepted': true,
+  });
+  return 'Deleted successfully';
+}
+///generate name of phone from root
+String phoneName(String root){
+  if('/'.allMatches(root).length==7){
+    List<String> _break=root.split(
+        new RegExp('/'));
+    return '${_break[4]} ${_break[7]}';
+  }else{
+    List<String> _break=root.split(
+        new RegExp('/'));
+    return '${_break[4][0].toUpperCase()}${_break[4].substring(1)} '
+        '${_break[7][0].toUpperCase()}${_break[7].substring(1)}\n'
+        'Variant: ${_break[8]}';
+  }
 }
 ///licenses
 void License(context){
